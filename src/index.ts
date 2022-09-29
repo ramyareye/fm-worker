@@ -17,9 +17,11 @@ export interface Env {
   //
   // Example binding to R2. Learn more at https://developers.cloudflare.com/workers/runtime-apis/r2/
   // MY_BUCKET: R2Bucket;
-  PARSE_SERVER: string;
-  PARSE_KEY1: string;
-  PARSE_KEY2: string;
+  SERVER: string;
+  KEY1: string;
+  KEY1_VALUE: string;
+  KEY2: string;
+  KEY2_VALUE: string;
 }
 
 async function gatherResponse(response: Response) {
@@ -37,12 +39,12 @@ export default {
     env: Env,
     ctx: ExecutionContext
   ): Promise<Response> {
-    const response = await fetch(env.PARSE_SERVER + "/functions/list", {
+    const response = await fetch(env.SERVER + "/functions/list", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "X-Parse-Application-Id": env.PARSE_KEY1,
-        "X-Parse-REST-API-Key": env.PARSE_KEY2,
+        [env.KEY1]: env.KEY1_VALUE,
+        [env.KEY2]: env.KEY2_VALUE,
       },
     });
 
