@@ -2,7 +2,7 @@ name = "memorial"
 main = "src/index.ts"
 compatibility_date = "2022-09-29"
 
-[env.production.vars]
+[vars]
 SERVER=
 KEY1=
 KEY1_VALUE=
